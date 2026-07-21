@@ -46,11 +46,7 @@ public class GameManager : MonoBehaviour
             gameObject.AddComponent<GameResultScreenManager>();
         }
 
-        if (FindAnyObjectByType<CandyRewardWindowManager>() == null)
-        {
-            gameObject.AddComponent<CandyRewardWindowManager>();
-        }
-
+        
         if (FindAnyObjectByType<TimerStartOnFirstSettlementExit>() == null)
         {
             gameObject.AddComponent<TimerStartOnFirstSettlementExit>();

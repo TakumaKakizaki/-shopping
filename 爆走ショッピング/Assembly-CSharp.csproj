@@ -65,20 +65,14 @@
     <Compile Include="Assets\Script\UI\InventoryStatusUI.cs" />
     <Compile Include="Assets\Script\Feedback\CameraShakeController.cs" />
     <Compile Include="Assets\Script\UI\InGameOptionMenu.cs" />
-    <Compile Include="Assets\Script\CandyEffects\CandyRewardWindowManager.cs" />
-    <Compile Include="Assets\Script\CandyEffects\AddTimeCandyEffect.cs" />
     <Compile Include="Assets\Script\GameFlow\GameRestartManager.cs" />
     <Compile Include="Assets\Script\Player\InventoryInfluenceSettings.cs" />
     <Compile Include="Assets\Script\Timer\TimerDisplayUI.cs" />
     <Compile Include="Assets\Script\Scoring\ImpactSettings.cs" />
     <Compile Include="Assets\Script\GameFlow\GameManager.cs" />
-    <Compile Include="Assets\Script\CandyEffects\NextRequiredCountOffsetCandyEffect.cs" />
     <Compile Include="Assets\Script\UI\JapaneseUIFont.cs" />
-    <Compile Include="Assets\Script\CandyEffects\InertiaReductionCandyEffect.cs" />
     <Compile Include="Assets\Script\UI\ControlsGuideUI.cs" />
     <Compile Include="Assets\Script\UI\StartMenuView.cs" />
-    <Compile Include="Assets\Script\CandyEffects\EfficientCollectionCandyEffect.cs" />
-    <Compile Include="Assets\Script\CandyEffects\RunningSpeedUpCandyEffect.cs" />
     <Compile Include="Assets\Script\Player\PlayerManager.cs" />
     <Compile Include="Assets\Script\Feedback\CollisionFeedbackManager.cs" />
     <Compile Include="Assets\Script\UI\StartMenuManager.cs" />
@@ -90,16 +84,13 @@
     <Compile Include="Assets\Script\GameFlow\InGameWindowManager.cs" />
     <Compile Include="Assets\Script\Timer\TimerManager.cs" />
     <Compile Include="Assets\Script\UI\GameResultScreenManager.cs" />
-    <Compile Include="Assets\Script\CandyEffects\CandyEffectContext.cs" />
     <Compile Include="Assets\Script\Scoring\ScoreTarget.cs" />
     <Compile Include="Assets\Script\Feedback\GamepadRumbleManager.cs" />
     <Compile Include="Assets\Script\Camera\CameraFollowController.cs" />
     <Compile Include="Assets\Script\Player\PlayerCollisionReporter.cs" />
     <Compile Include="Assets\Script\Player\PlayerMovementPresetApplier.cs" />
     <Compile Include="Assets\Script\Timer\TimerStartOnFirstSettlementExit.cs" />
-    <Compile Include="Assets\Script\CandyEffects\CandyEffectLibrary.cs" />
     <Compile Include="Assets\Script\UI\RuntimeOptionMenu.cs" />
-    <Compile Include="Assets\Script\CandyEffects\CandyEffect.cs" />
     <Compile Include="Assets\Script\Player\PlayerMovementControlPreset.cs" />
   </ItemGroup>
   <ItemGroup>

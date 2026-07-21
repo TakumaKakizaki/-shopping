@@ -332,7 +332,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5743879188258456552, guid: 47ae3ed6f2f16e040a0f0f3f7cc7038a, type: 3}
       propertyPath: followSmoothTime
-      value: 0.1
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 5743879188258456552, guid: 47ae3ed6f2f16e040a0f0f3f7cc7038a, type: 3}
       propertyPath: useOnlyTargetYaw
@@ -344,7 +344,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5743879188258456552, guid: 47ae3ed6f2f16e040a0f0f3f7cc7038a, type: 3}
       propertyPath: rotationSmoothSpeed
-      value: 12
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 5743879188258456552, guid: 47ae3ed6f2f16e040a0f0f3f7cc7038a, type: 3}
       propertyPath: enableOverviewCamera
@@ -376,7 +376,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6808952901160586044, guid: 47ae3ed6f2f16e040a0f0f3f7cc7038a, type: 3}
       propertyPath: maxFOV
-      value: 70
+      value: 85
       objectReference: {fileID: 0}
     - target: {fileID: 6808952901160586044, guid: 47ae3ed6f2f16e040a0f0f3f7cc7038a, type: 3}
       propertyPath: minFOV
@@ -388,7 +388,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6808952901160586044, guid: 47ae3ed6f2f16e040a0f0f3f7cc7038a, type: 3}
       propertyPath: smoothTime
-      value: 0.1
+      value: 0.031
       objectReference: {fileID: 0}
     - target: {fileID: 6808952901160586044, guid: 47ae3ed6f2f16e040a0f0f3f7cc7038a, type: 3}
       propertyPath: targetRigidbody
@@ -1338,7 +1338,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 658734645768193305, guid: bf42b90b3fa3eab4097a2ad37616e99d, type: 3}
       propertyPath: m_Mass
-      value: 12
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 658734645768193305, guid: bf42b90b3fa3eab4097a2ad37616e99d, type: 3}
       propertyPath: m_UseGravity
@@ -1495,6 +1495,10 @@ PrefabInstance:
     - target: {fileID: 5707856932140349517, guid: bf42b90b3fa3eab4097a2ad37616e99d, type: 3}
       propertyPath: maxReverseSpeed
       value: 6.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5707856932140349517, guid: bf42b90b3fa3eab4097a2ad37616e99d, type: 3}
+      propertyPath: turnAcceleration
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 5707856932140349517, guid: bf42b90b3fa3eab4097a2ad37616e99d, type: 3}
       propertyPath: brakeDeceleration
@@ -2858,7 +2862,7 @@ PrefabInstance:
     - target: {fileID: 1088440258901806778, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
       propertyPath: m_Material
       value: 
-      objectReference: {fileID: 13400000, guid: 493089824e3c4eb4c9757344e9e79c83, type: 2}
+      objectReference: {fileID: 13400000, guid: fc8f221486ce61a498d0d571ef0194fc, type: 2}
     - target: {fileID: 1178864868756823400, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
       propertyPath: m_LocalScale.x
       value: 3
