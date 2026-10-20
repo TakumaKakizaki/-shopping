@@ -2623,7 +2623,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a125ccbac4804a5983d324a4b1348713, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameRestartManager
-  restartActiveScene: 1
+  restartActiveScene: 0
   gameSceneName: ShoppingGameplay
   startMenuSceneName: MainMenu
   pauseManager: {fileID: 0}
@@ -2737,7 +2737,6 @@ MonoBehaviour:
   inventoryHud: {fileID: 1480146381}
   timerHud: {fileID: 1569092311}
   scoreboardView: {fileID: 1869446626}
-  windowManager: {fileID: 1480146385}
   optionMenu: {fileID: 1480146384}
   resultScreen: {fileID: 1480146382}
 --- !u!1 &1486261476 stripped
