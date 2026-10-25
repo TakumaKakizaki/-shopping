@@ -163,7 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b7e98f6aaeb4a37aa9556e9011be65f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StartMenuManager
-  gameSceneName: ShoppingGameplay
+  gameScenePath: Assets/_Project/Scenes/Gameplay/TESTSCENE.unity
   sceneMenuView: {fileID: 0}
   menuViewPrefab: {fileID: 0}
   useThemedStartScreen: 1

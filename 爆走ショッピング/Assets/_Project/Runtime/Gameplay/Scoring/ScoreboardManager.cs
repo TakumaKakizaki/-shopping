@@ -8,12 +8,13 @@ using UnityEngine.UI;
 /// <summary>現在の目標、獲得数、結算得点を管理し、HUD 用の文字列を提供します。</summary>
 public class ScoreboardManager : MonoBehaviour
 {
-    // 抽選された目標と、そのラウンドで必要な個数を保持します。
+    // 抽選された目標、必要数、分割納品済みの累計を保持します。
     [Serializable]
     private class TargetEntry
     {
         public ScoreTarget target;
         public int requiredCount;
+        public int deliveredCount;
     }
 
     // 他のゲーム機能への参照は、GameSessionRoot から初期化時に受け取ります。
@@ -75,7 +76,7 @@ public class ScoreboardManager : MonoBehaviour
 
     public event Action StateChanged;
 
-    // 目標が有効で一件以上あり、全ての必要数を満たしているかを返します。
+    // 目標が有効で一件以上あり、全ての必要数を納品済みかを返します。
     public bool IsComplete
     {
         get
@@ -92,7 +93,7 @@ public class ScoreboardManager : MonoBehaviour
                     return false;
                 }
 
-                if (GetCurrentCount(entry.target) < entry.requiredCount)
+                if (entry.deliveredCount < entry.requiredCount)
                 {
                     return false;
                 }
@@ -207,28 +208,36 @@ public class ScoreboardManager : MonoBehaviour
         return true;
     }
 
-    // 目標達成と再入場条件を確認し、得点を加算して次の目標へ進みます。
+    // 入場時に車内をすべて降ろし、対象品を累計納品数へ加えます。完納時だけ次へ進みます。
     public bool TrySettleCompletedTargets()
     {
-        if (!IsActive)
+        bool canDeliver = IsActive && canSettleCurrentTargets;
+        canSettleCurrentTargets = false;
+        StopIncompleteFlash();
+
+        if (canDeliver && inventory != null)
+        {
+            foreach (TargetEntry entry in activeEntries)
+            {
+                if (entry != null && entry.target != null)
+                {
+                    entry.deliveredCount += inventory.GetCount(entry.target);
+                }
+            }
+        }
+
+        // 対象外の品や目標が無いときの荷物も、入場時には必ず降ろします。
+        inventory?.ClearInventory();
+        RefreshAfterInventoryChanged();
+
+        if (!canDeliver || !IsComplete)
         {
             return false;
         }
 
-        if (!canSettleCurrentTargets)
-        {
-            return false;
-        }
-
-        if (!IsComplete)
-        {
-            FlashIncompleteWarning();
-            return false;
-        }
-
-        // 所持品を消す前に超過分の得点を集計します。
+        // 分割納品の累計から超過分を集計し、完納ボーナスは一回だけ加算します。
         RecordSettlementScore();
-        CompleteScoreboard(true);
+        CompleteScoreboard(false);
 
         // 報酬選択を挟まず、達成後はすぐ次の目標を作成します。
         StartScoreboard();
@@ -312,10 +321,10 @@ public class ScoreboardManager : MonoBehaviour
         completedSettlementCount++;
     }
 
-    // 目標の必要数を超えた所持個数だけを、アイテム ID ごとに重複なく合計します。
+    // 必要数を超えた累計納品数だけを、アイテム ID ごとに重複なく合計します。
     private int CalculateSettledExcessTargetItemCount()
     {
-        if (inventory == null || activeEntries.Count == 0)
+        if (activeEntries.Count == 0)
         {
             return 0;
         }
@@ -338,8 +347,7 @@ public class ScoreboardManager : MonoBehaviour
                 continue;
             }
 
-            int currentCount = inventory.GetCount(itemId);
-            total += Mathf.Max(0, currentCount - entry.requiredCount);
+            total += Mathf.Max(0, entry.deliveredCount - entry.requiredCount);
         }
 
         return total;
@@ -395,7 +403,7 @@ public class ScoreboardManager : MonoBehaviour
         RefreshText();
     }
 
-    // 結算エリアへの入場時に、現在の目標を結算できるか確認します。
+    // 結算エリアへの入場時に車内を降ろし、今回の納品を反映します。
     private void HandleSettlementAreaEntered()
     {
         TrySettleCompletedTargets();
@@ -567,7 +575,7 @@ public class ScoreboardManager : MonoBehaviour
             return;
         }
 
-        bool stillNeeded = GetCurrentCount(entry.target) < entry.requiredCount;
+        bool stillNeeded = entry.deliveredCount + GetCurrentCount(entry.target) < entry.requiredCount;
         SetHighlightForItemId(entry.target.ItemId, stillNeeded);
     }
 
@@ -629,12 +637,14 @@ public class ScoreboardManager : MonoBehaviour
                 continue;
             }
 
-            textBuilder.Append(entry.target.DisplayName)
-                .Append(" (")
-                .Append(GetCurrentCount(entry.target))
+            textBuilder.AppendLine(entry.target.DisplayName)
+                .Append("納品 ")
+                .Append(entry.deliveredCount)
                 .Append("/")
                 .Append(entry.requiredCount)
-                .AppendLine(")");
+                .Append("　カート ")
+                .Append(GetCurrentCount(entry.target))
+                .AppendLine();
         }
 
         return textBuilder.ToString().TrimEnd();

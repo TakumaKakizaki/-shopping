@@ -8,6 +8,9 @@ public sealed class ScoreboardView : MonoBehaviour
     [SerializeField] private Text text;
     [SerializeField] private Color incompleteColor = Color.red;
     [SerializeField] private Color normalColor = Color.white;
+    [Header("納品・カート表示")]
+    [SerializeField, Min(220f)] private float panelWidth = 420f;
+    [SerializeField, Min(12)] private int statusFontSize = 24;
 
     private ScoreboardManager scoreboard;
 
@@ -17,6 +20,7 @@ public sealed class ScoreboardView : MonoBehaviour
     // 管理クラスを差し替える時は、古いイベント登録を先に解除します。
     public void Initialize(ScoreboardManager source)
     {
+        ConfigureLayout();
         if (scoreboard == source)
         {
             Refresh();
@@ -74,6 +78,32 @@ public sealed class ScoreboardView : MonoBehaviour
         if (text != null)
         {
             text.text = scoreboard != null ? scoreboard.GetDisplayText() : string.Empty;
+            if (text.transform.parent == transform && transform is RectTransform panel)
+            {
+                panel.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, Mathf.Max(64f, text.preferredHeight + 24f));
+            }
+        }
+    }
+
+    // 各商品の二行表示が既存シーンの小さい枠からはみ出さないようにします。
+    private void ConfigureLayout()
+    {
+        if (text == null) return;
+        text.font = JapaneseUIFont.Get(statusFontSize);
+        text.fontSize = statusFontSize;
+        text.alignment = TextAnchor.UpperLeft;
+        text.horizontalOverflow = HorizontalWrapMode.Wrap;
+        text.verticalOverflow = VerticalWrapMode.Overflow;
+        text.lineSpacing = 1.15f;
+        text.raycastTarget = false;
+
+        if (text.transform.parent == transform && transform is RectTransform panel)
+        {
+            panel.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, Mathf.Max(220f, panelWidth));
+            text.rectTransform.anchorMin = Vector2.zero;
+            text.rectTransform.anchorMax = Vector2.one;
+            text.rectTransform.offsetMin = new Vector2(16f, 12f);
+            text.rectTransform.offsetMax = new Vector2(-16f, -12f);
         }
     }
 }

@@ -290,7 +290,7 @@ public static class ProjectStructureMigration
         if (menu != null)
         {
             SerializedObject serialized = new SerializedObject(menu);
-            serialized.FindProperty("gameSceneName").stringValue = "ShoppingGameplay";
+            serialized.FindProperty("gameScenePath").stringValue = "Assets/_Project/Scenes/Gameplay/ShoppingGameplay.unity";
             serialized.ApplyModifiedPropertiesWithoutUndo();
         }
         EditorSceneManager.SaveScene(scene);

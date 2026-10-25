@@ -96,7 +96,7 @@ public sealed class GameSessionRoot : MonoBehaviour
     private void InitializeSystems()
     {
         scoreboardManager.Initialize(impactSettings, inventory, settlementArea, scoreTargets, scoreboardView);
-        inventoryInfluence.Initialize(inventory, player, impactSettings);
+        inventoryInfluence.Initialize(inventory, player);
         collisionFeedback.Initialize(impactSettings);
         restartManager.Initialize(pauseManager);
         optionMenu.Initialize(pauseManager, restartManager, player);

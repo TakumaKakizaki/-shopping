@@ -1082,7 +1082,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 206110993}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 9bd2826f6f574c19a33efe92b45f04cd, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1094,10 +1094,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.26747018
-  m_Height: 1.011048
+  m_Radius: 0.30801374
+  m_Height: 1.5548058
   m_Direction: 2
-  m_Center: {x: -0.0015478134, y: -0.035152264, z: 0}
+  m_Center: {x: 0.0151462555, y: -0.09239054, z: 0.22418404}
 --- !u!96 &206110995
 TrailRenderer:
   serializedVersion: 4
@@ -1222,7 +1222,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ImpactSettings
   minImpactSpeed: 10
   maxImpactSpeed: 25
-  loadImpactMultiplier: 1
   lastRawImpactSpeed: 0
   lastAdjustedImpactSpeed: 0
   lastImpactRate: 0
@@ -1240,12 +1239,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InventoryInfluenceSettings
   inventory: {fileID: 0}
   playerManager: {fileID: 0}
-  impactSettings: {fileID: 0}
   accelerationWeightFactor: 0.02
   decelerationWeightFactor: 0.015
   turnAccelerationWeightFactor: 0.015
   turnDecelerationWeightFactor: 0.015
-  collisionWeightFactor: 0.015
   minAccelerationMultiplier: 0.35
   minDecelerationMultiplier: 0.45
   minTurnAccelerationMultiplier: 0.35
@@ -1255,7 +1252,6 @@ MonoBehaviour:
   currentDecelerationMultiplier: 1
   currentTurnAccelerationMultiplier: 1
   currentTurnDecelerationMultiplier: 1
-  currentCollisionMultiplier: 1
 --- !u!114 &206110998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1316,19 +1312,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerManager
   lowSpeedAcceleration: 15
-  highSpeedAcceleration: 5
+  highSpeedAcceleration: 4.5
   accelerationSwitchSpeed: 7
-  reverseAcceleration: 8
-  deceleration: 15
+  reverseAcceleration: 6
+  deceleration: 18
   brakeDeceleration: 25
-  maxSpeed: 30
-  maxReverseSpeed: 6.8
+  maxSpeed: 28
+  maxReverseSpeed: 6
   triggerDeadZone: 0.1
   stopThreshold: 1
   turnResetSpeed: 8
   stickDeadZone: 0.1
   turnAcceleration: 8
-  maxAngularSpeed: 3
+  maxAngularSpeed: 4.5
   readGamepadDirectly: 1
   controlScheme: 1
 --- !u!54 &206111001
@@ -1358,27 +1354,6 @@ Rigidbody:
   m_Interpolate: 2
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &206111002
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 206110993}
-  m_Material: {fileID: 13400000, guid: 493089824e3c4eb4c9757344e9e79c83, type: 2}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.63269234, y: 0.80688643, z: 0.36906433}
-  m_Center: {x: 0.015093803, y: 0.0033758879, z: 0.649456}
 --- !u!4 &206111003 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3758a1bb4204f4e47a4839e00fbb9735, type: 3}
@@ -1574,6 +1549,8 @@ MonoBehaviour:
   text: {fileID: 1785948067}
   incompleteColor: {r: 1, g: 0, b: 0, a: 1}
   normalColor: {r: 1, g: 1, b: 1, a: 1}
+  panelWidth: 420
+  statusFontSize: 24
 --- !u!114 &293833908
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3390,10 +3367,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2753dd1deca68df40b53b13c8316129e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 768098160}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2753dd1deca68df40b53b13c8316129e, type: 3}
 --- !u!1 &764142478
 GameObject:
@@ -3439,39 +3413,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &768098158 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 2753dd1deca68df40b53b13c8316129e, type: 3}
-  m_PrefabInstance: {fileID: 734744590}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &768098159 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2753dd1deca68df40b53b13c8316129e, type: 3}
   m_PrefabInstance: {fileID: 734744590}
   m_PrefabAsset: {fileID: 0}
---- !u!136 &768098160
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 768098158}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.35884285
-  m_Height: 1.2468185
-  m_Direction: 1
-  m_Center: {x: -0.00053977966, y: -0.000103354454, z: 0.1001285}
 --- !u!1 &784136770
 GameObject:
   m_ObjectHideFlags: 0
@@ -6490,17 +6436,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventoryStatusUI
   inventory: {fileID: 0}
-  influenceSettings: {fileID: 0}
+  manyItemsThreshold: 15
+  fullItemsThreshold: 20
   anchoredPosition: {x: 24, y: 24}
-  size: {x: 390, y: 250}
+  panelWidth: 300
   titleFontSize: 24
-  bodyFontSize: 18
-  influenceFontSize: 18
-  maxVisibleItems: 3
-  influenceHeight: 82
   backgroundColor: {r: 0, g: 0, b: 0, a: 0.45}
   titleColor: {r: 1, g: 1, b: 1, a: 1}
-  bodyColor: {r: 1, g: 1, b: 1, a: 0.92}
 --- !u!114 &1312923391
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8124,9 +8066,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 768098159}
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3758a1bb4204f4e47a4839e00fbb9735, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 206111002}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3758a1bb4204f4e47a4839e00fbb9735, type: 3}
       insertIndex: -1
       addedObject: {fileID: 206111001}

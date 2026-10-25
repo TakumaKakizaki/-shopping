@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 /// <summary>タイトル画面の選択、オプション設定、ゲーム開始を管理します。</summary>
@@ -29,7 +30,8 @@ public class StartMenuManager : MonoBehaviour
 
     // 開始時に読み込むゲームシーンです。
     [Header("シーン")]
-    [SerializeField] private string gameSceneName = "idou";
+    [SerializeField, SceneAssetPath, FormerlySerializedAs("gameSceneName")]
+    private string gameScenePath;
 
     // 既存シーンのビューと、生成に使う任意の Prefab を指定します。
     [Header("事前作成ビュー")]
@@ -618,15 +620,15 @@ public class StartMenuManager : MonoBehaviour
     // 遷移先を検証して設定を保持し、開始通知の後にゲームシーンを読み込みます。
     public void StartGame()
     {
-        if (string.IsNullOrWhiteSpace(gameSceneName))
+        if (string.IsNullOrWhiteSpace(gameScenePath))
         {
-            Debug.LogError("[StartMenuManager] Game scene name is empty.");
+            Debug.LogError("[StartMenuManager] Select a game scene in the Inspector.", this);
             return;
         }
 
-        if (!Application.CanStreamedLevelBeLoaded(gameSceneName))
+        if (!Application.CanStreamedLevelBeLoaded(gameScenePath))
         {
-            Debug.LogError("[StartMenuManager] Scene is not available in Build Settings: " + gameSceneName);
+            Debug.LogError("[StartMenuManager] Scene is not available in Build Settings: " + gameScenePath, this);
             return;
         }
 
@@ -634,7 +636,7 @@ public class StartMenuManager : MonoBehaviour
         QueueSelectedMovementPreset();
         startSelected.Invoke();
         StartSelected?.Invoke();
-        SceneManager.LoadScene(gameSceneName);
+        SceneManager.LoadScene(gameScenePath);
     }
 
     // 入力状態と選択行を初期化してオプションを表示し、開いたことを通知します。
@@ -1467,11 +1469,6 @@ public class StartMenuManager : MonoBehaviour
     // Inspector の変更時に、設定値を有効な範囲へ補正します。
     private void OnValidate()
     {
-        if (string.IsNullOrWhiteSpace(gameSceneName))
-        {
-            gameSceneName = "idou";
-        }
-
         menuFontSize = Mathf.Max(12, menuFontSize);
         optionHintFontSize = Mathf.Max(12, optionHintFontSize);
         optionItemFontSize = Mathf.Max(12, optionItemFontSize);
