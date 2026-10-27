@@ -306,8 +306,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 277edb7298fda684d96855a3973fffc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TimerManager
-  countdownDuration: 180
-  showDebugLog: 0
+  countdownDuration: 5
+  showDebugLog: 1
   timerStarted:
     m_PersistentCalls:
       m_Calls: []
